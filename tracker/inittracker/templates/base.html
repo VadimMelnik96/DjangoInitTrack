@@ -14,14 +14,14 @@
     <h2>Трекер инициативы</h2>
     {% if user.is_authenticated %}
         <p>Добро пожаловать, {{user.username}}</p>
-
+        <a href="{% url 'inittracker:user_encounters' %}">Мои столкновения</a>
        <form action="{% url 'accounts:logout' %}" method="post">
     {% csrf_token %}
     <button type="submit">Выйти</button>
     </form>
      {% else %}
         <a href="{% url 'accounts:login' %}">Войти</a>
-        <a href="{% url 'accounts:registration'% }">Зарегистрироваться</a>
+        <a href="{% url 'accounts:registration' %}">Зарегистрироваться</a>
       {% endif %}
 
 </div>

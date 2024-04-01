@@ -4,6 +4,7 @@ from time import timezone
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.postgres.fields import ArrayField
+from django.urls import reverse
 
 STATUSES = (
     ('bl', "Blinded"),
@@ -29,6 +30,9 @@ class Encounter(models.Model):
 
     class Meta:
         ordering = ['-created_at']
+
+    def get_absolute_url(self):
+        return reverse('inittracker:encounter_detail', kwargs={'pk': self.id})
 
 class Monster(models.Model):
     name = models.CharField(max_length=150)

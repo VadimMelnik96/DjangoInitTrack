@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{%block title %} Мои столкновения {% endblock %}
+{% block content %}
+    <div>{% for encounter in encounters %}
+
+        <a href="{{encounter.get_absolute_url}}">{{ encounter.name }}</a>
+        <small>{{ encounter.created_at }}</small>
+        <br>
+    {% endfor %}
+    </div>
+{% endblock %}
