@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {%block title %} Мои столкновения {% endblock %}
 {% block content %}
+    <a href="{% url 'inittracker:create_encounter' %}">Создать столкновение</a>
     <div>{% for encounter in encounters %}
 
         <a href="{{encounter.get_absolute_url}}">{{ encounter.name }}</a>

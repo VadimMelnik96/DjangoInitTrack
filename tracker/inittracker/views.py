@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, ListView, DetailView
+from django.views.generic import TemplateView, ListView, DetailView, CreateView
 
 from .models import Encounter
 
@@ -10,9 +10,17 @@ from .models import Encounter
 class IndexView(TemplateView):
     template_name = 'index.html'
 
+class EncounterCreateView(CreateView):
+    template_name = "create_encounter.html"
+    model = Encounter
+    success_url = '/'
+    fields = ["name"]
+    context_object_name = "create_encounter"
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 class EncounterListView(ListView):
-
     template_name = "user_encounters.html"
     context_object_name = "encounters"
 
